@@ -50,6 +50,21 @@
   --transition-slow: 0.5s ease;
 }
 
+/* 暗色模式变量 */
+.dark {
+  --bg-main: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #1a1a2e 100%);
+  --bg-light: #1f1f35;
+  --bg-card: rgba(30, 30, 50, 0.85);
+  --text-primary: #e0e0e0;
+  --text-secondary: #a0a0a0;
+  --text-light: #666;
+
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.5);
+  --shadow-card: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
 /* 全局样式重置 */
 * {
   margin: 0;

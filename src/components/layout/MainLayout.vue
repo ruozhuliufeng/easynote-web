@@ -4,6 +4,8 @@ import { useRoute, useRouter } from 'vue-router'
 import { useUserStore } from '@/store/modules/user'
 import { ElMessageBox } from 'element-plus'
 import { getUnreadCount } from '@/api/message'
+import ThemeToggle from '@/components/ThemeToggle.vue'
+import { Bell, ArrowDown, Fold, Expand, Setting, SwitchButton } from '@element-plus/icons-vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -19,6 +21,7 @@ const menuItems = [
   { path: '/ledger', title: '账本管理', icon: 'Notebook', color: '#f093fb' },
   { path: '/income', title: '收入管理', icon: 'TrendCharts', color: '#56ab2f' },
   { path: '/expense', title: '支出管理', icon: 'ShoppingCart', color: '#ff6b6b' },
+  { path: '/category', title: '分类管理', icon: 'Collection', color: '#fa709a' },
   { path: '/family', title: '家庭管理', icon: 'UserFilled', color: '#feca57' },
   { path: '/bankcard', title: '银行卡管理', icon: 'CreditCard', color: '#4facfe' },
   { path: '/setting', title: '个人设置', icon: 'Setting', color: '#a8e6cf' }
@@ -133,6 +136,9 @@ onUnmounted(() => {
           </div>
         </div>
         <div class="header-right">
+          <!-- 主题切换 -->
+          <ThemeToggle />
+
           <!-- 消息图标 -->
           <div class="header-action" @click="goToMessage">
             <el-badge :value="unreadCount" :hidden="unreadCount === 0" :max="99">
@@ -387,5 +393,35 @@ onUnmounted(() => {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+/* 暗色模式样式 */
+:deep(.dark) {
+  .layout-container {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #1a1a2e 100%);
+  }
+
+  .layout-header {
+    background: rgba(30, 30, 50, 0.85);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .header-left {
+    .greeting-text {
+      color: #e0e0e0;
+
+      .greeting {
+        color: #a0a0a0;
+      }
+    }
+  }
+
+  .layout-sidebar {
+    background: linear-gradient(180deg, #2c2c54 0%, #474787 50%, #6c5ce7 100%);
+  }
+
+  .layout-sidebar .logo .logo-icon {
+    background: rgba(255, 255, 255, 0.15);
+  }
 }
 </style>

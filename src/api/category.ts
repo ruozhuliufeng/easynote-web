@@ -34,3 +34,8 @@ export function createCategory(params: CreateCategoryParams) {
 export function deleteCategory(id: number) {
   return del<void>(`/category/${id}`)
 }
+
+// 更新分类
+export function updateCategory(id: number, params: CreateCategoryParams) {
+  return post<Category>(`/category/${id}`, params)
+}

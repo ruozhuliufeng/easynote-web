@@ -63,6 +63,12 @@ const routes: RouteRecordRaw[] = [
         meta: { title: '银行卡管理', icon: 'CreditCard' }
       },
       {
+        path: 'category',
+        name: 'Category',
+        component: () => import('@/views/category/Index.vue'),
+        meta: { title: '分类管理', icon: 'Collection' }
+      },
+      {
         path: 'message',
         name: 'Message',
         component: () => import('@/views/message/Index.vue'),

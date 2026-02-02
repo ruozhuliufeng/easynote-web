@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, onMounted, computed } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
+import { Close, Plus } from '@element-plus/icons-vue'
 import { getIncomes, createIncome, updateIncome, deleteIncome, type Income, type CreateIncomeParams, type IncomeQueryParams } from '@/api/income'
 import { getLedgers, type Ledger } from '@/api/ledger'
 import { getCategories, type Category } from '@/api/category'
@@ -297,7 +298,15 @@ onMounted(() => {
     </div>
 
     <!-- 创建/编辑弹窗 -->
-    <el-dialog v-model="dialogVisible" :title="dialogTitle" width="500px">
+    <el-dialog v-model="dialogVisible" :title="dialogTitle" width="500px" class="income-dialog">
+      <template #header>
+        <div class="dialog-header">
+          <span>{{ dialogTitle }}</span>
+          <el-button class="close-btn" @click="dialogVisible = false">
+            <el-icon><Close /></el-icon>
+          </el-button>
+        </div>
+      </template>
       <el-form :model="form" label-width="80px">
         <el-form-item label="账本" required>
           <el-select v-model="form.ledgerId" placeholder="请选择账本" style="width: 100%">
@@ -352,6 +361,40 @@ onMounted(() => {
     margin-top: 20px;
     display: flex;
     justify-content: flex-end;
+  }
+}
+
+.income-dialog {
+  .dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 600;
+    color: #2c3e50;
+  }
+
+  .close-btn {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.05);
+    border: none;
+    transition: all 0.3s;
+
+    &:hover {
+      background: rgba(231, 76, 60, 0.1);
+      color: #e74c3c;
+      transform: rotate(90deg);
+    }
+
+    .el-icon {
+      font-size: 18px;
+    }
   }
 }
 </style>
